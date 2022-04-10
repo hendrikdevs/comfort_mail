@@ -1,0 +1,39 @@
+<h1>Listing Contacts</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.contact_index_path(@socket, :index)}>
+    <.live_component
+      module={ComfortMailWeb.ContactLive.FormComponent}
+      id={@contact.id || :new}
+      title={@page_title}
+      action={@live_action}
+      contact={@contact}
+      return_to={Routes.contact_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Email</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="contacts">
+    <%= for contact <- @contacts do %>
+      <tr id={"contact-#{contact.id}"}>
+        <td><%= contact.email %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.contact_show_path(@socket, :show, contact) %></span>
+          <span><%= live_patch "Edit", to: Routes.contact_index_path(@socket, :edit, contact) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: contact.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Contact", to: Routes.contact_index_path(@socket, :new) %></span>
