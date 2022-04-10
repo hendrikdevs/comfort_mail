@@ -17,7 +17,7 @@ defmodule ComfortMailWeb.Router do
   scope "/", ComfortMailWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", IndexLive.Index, :index
 
     live "/contacts", ContactLive.Index, :index
     live "/contacts/new", ContactLive.Index, :new
