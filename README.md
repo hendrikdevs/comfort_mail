@@ -3,6 +3,8 @@
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
+  * Start Postgres database 
+  `sudo docker run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 --name comfort-mail-postgres postgres`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
@@ -17,3 +19,4 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
   * Docs: https://hexdocs.pm/phoenix
   * Forum: https://elixirforum.com/c/phoenix-forum
   * Source: https://github.com/phoenixframework/phoenix
+b
