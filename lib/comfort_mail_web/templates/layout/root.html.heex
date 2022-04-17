@@ -10,15 +10,21 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <header>
-
-
-    
+    <header class="container header-margin">
+      <nav>
+        <span>logo</span>
+        <div>
+          <a href="#">How IT works</a>
+          <span>|</span>
+          <a href="#">Register</a>
+        </div>
+      </nav>
     </header>
+    
     <%= @inner_content %>
 
     <footer>
-
+      
 
     </footer>
   </body>
