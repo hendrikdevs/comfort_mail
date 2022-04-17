@@ -3,8 +3,10 @@
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Start Postgres database 
+  * Start Postgres database (first time)
   `sudo docker run -d -e POSTGRES_PASSWORD=postgres -e POSTGRES_USER=postgres -p 5432:5432 --name comfort-mail-postgres postgres`
+  * When the postgres image is already there you can start it with
+  `sudo docker container start comfort-mail-postgres`
   * Create and migrate your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
