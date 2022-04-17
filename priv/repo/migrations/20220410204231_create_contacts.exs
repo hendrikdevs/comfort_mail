@@ -8,5 +8,7 @@ defmodule ComfortMail.Repo.Migrations.CreateContacts do
 
       timestamps()
     end
+
+    create unique_index(:contacts, [:email])
   end
 end

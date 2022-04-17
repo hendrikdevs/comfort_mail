@@ -18,5 +18,6 @@ defmodule ComfortMail.Mails.Contact do
     |> cast(attrs, [:email])
     |> validate_required([:email])
     |> EmailValidator.validate_email(:email)
+    |> unique_constraint(:email)
   end
 end
