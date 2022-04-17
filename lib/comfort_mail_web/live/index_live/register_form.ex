@@ -36,7 +36,8 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
       {:ok, _contact} ->
         {:noreply,
          socket
-         |> put_flash(:info, "Registered successfully")}
+         |> put_flash(:info, "Registered successfully")
+         |> push_redirect(to: "/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
