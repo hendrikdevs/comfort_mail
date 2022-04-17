@@ -1,8 +1,12 @@
 defmodule ComfortMailWeb.IndexLive.Index do
   use ComfortMailWeb, :live_view
 
+  alias ComfortMail.Mails.Contact
+
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket}
+    {:ok,
+     socket
+     |> assign(:contact, %Contact{})}
   end
 end

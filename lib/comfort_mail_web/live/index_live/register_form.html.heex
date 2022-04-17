@@ -1,0 +1,20 @@
+<div>
+  <.form
+    let={f}
+    for={@changeset}
+    id="contact-register-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="register"
+  >
+    <%= label f, :email %>
+    <%= email_input f, :email %>
+    <%= error_tag f, :email %>
+
+    <div>
+      <%= submit "Register", phx_disable_with: "Register..." %>
+    </div>
+
+
+  </.form>
+</div>
