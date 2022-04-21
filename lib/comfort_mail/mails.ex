@@ -38,6 +38,22 @@ defmodule ComfortMail.Mails do
   def get_contact!(id), do: Repo.get!(Contact, id)
 
   @doc """
+  Gets a single contact by email. This works because the email is a unique field.
+
+  Returns nil if no contact with the provided email exists.
+
+  ## Examples
+
+    iex> get_contact_by_email(test@test.com)
+    %Contact{}
+
+    iex> get_contact_by_email(not@registed.com)
+    nil
+  """
+  @spec get_contact_by_email(binary) :: %Contact{} | nil
+  def get_contact_by_email(email), do: Repo.get_by(Contact, email: email)
+
+  @doc """
   Creates a contact.
 
   ## Examples
