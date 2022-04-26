@@ -30,13 +30,14 @@ defmodule ComfortMail.Mails.ContactNotifierTest do
 
   test "deliver_form_submission/1" do
     user = %{name: "Alice", email: "alice@example.com"}
+    content = %{email: "test@test.com", subject: "Question about the product"}
 
-    ContactNotifier.deliver_form_submission(user)
+    ContactNotifier.deliver_form_submission(user.email, content)
 
     assert_email_sent(
-      subject: "Welcome to Phoenix, Alice!",
-      to: {"Alice", "alice@example.com"},
-      text_body: ~r/Hello, Alice/
+      subject: "A user submitted a form - ComfortMail",
+      to: {"Dear User", "alice@example.com"},
+      text_body: ~r/email/
     )
   end
 end
