@@ -4,8 +4,8 @@ defmodule ComfortMailWeb.ContactLiveTest do
   import Phoenix.LiveViewTest
   import ComfortMail.MailsFixtures
 
-  @create_attrs %{email: "some email"}
-  @update_attrs %{email: "some updated email"}
+  @create_attrs %{email: "another@email.com"}
+  @update_attrs %{email: "some@updated.email"}
   @invalid_attrs %{email: nil}
 
   defp create_contact(_) do
@@ -42,7 +42,7 @@ defmodule ComfortMailWeb.ContactLiveTest do
         |> follow_redirect(conn, Routes.contact_index_path(conn, :index))
 
       assert html =~ "Contact created successfully"
-      assert html =~ "some email"
+      assert html =~ "another@email.com"
     end
 
     test "updates contact in listing", %{conn: conn, contact: contact} do
@@ -64,7 +64,7 @@ defmodule ComfortMailWeb.ContactLiveTest do
         |> follow_redirect(conn, Routes.contact_index_path(conn, :index))
 
       assert html =~ "Contact updated successfully"
-      assert html =~ "some updated email"
+      assert html =~ "some@updated.email"
     end
 
     test "deletes contact in listing", %{conn: conn, contact: contact} do
@@ -104,7 +104,7 @@ defmodule ComfortMailWeb.ContactLiveTest do
         |> follow_redirect(conn, Routes.contact_show_path(conn, :show, contact))
 
       assert html =~ "Contact updated successfully"
-      assert html =~ "some updated email"
+      assert html =~ "some@updated.email"
     end
   end
 end
