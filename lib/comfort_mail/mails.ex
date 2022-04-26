@@ -67,7 +67,7 @@ defmodule ComfortMail.Mails do
   """
   def create_contact(attrs \\ %{}) do
     %Contact{}
-    |> Contact.changeset(attrs)
+    |> Contact.registration_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -116,5 +116,24 @@ defmodule ComfortMail.Mails do
   """
   def change_contact(%Contact{} = contact, attrs \\ %{}) do
     Contact.changeset(contact, attrs)
+  end
+
+  @doc """
+  Activates a contact.
+
+  Returns an updated (and activated) contact or a changeset containing the error.
+
+  ## Examples
+
+    iex> activate_contact(contact)
+    %Contact{}
+
+    iex> acitvate_contact(banned_contact)
+    %Ecto.Changeset{}
+  """
+  def activate_contact(%Contact{} = contact, attrs \\ %{}) do
+    contact
+    |> Contact.activation_changeset(attrs)
+    |> Repo.update()
   end
 end
