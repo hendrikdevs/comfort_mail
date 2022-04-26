@@ -21,10 +21,11 @@ defmodule ComfortMail.MailsTest do
     end
 
     test "create_contact/1 with valid data creates a contact" do
-      valid_attrs = %{email: "some email"}
+      valid_attrs = %{email: "some@email.com"}
 
       assert {:ok, %Contact{} = contact} = Mails.create_contact(valid_attrs)
-      assert contact.email == "some email"
+      assert contact.email == "some@email.com"
+      assert contact.status == :registered
     end
 
     test "create_contact/1 with invalid data returns error changeset" do
@@ -33,10 +34,10 @@ defmodule ComfortMail.MailsTest do
 
     test "update_contact/2 with valid data updates the contact" do
       contact = contact_fixture()
-      update_attrs = %{email: "some updated email"}
+      update_attrs = %{email: "some@updated.email"}
 
       assert {:ok, %Contact{} = contact} = Mails.update_contact(contact, update_attrs)
-      assert contact.email == "some updated email"
+      assert contact.email == "some@updated.email"
     end
 
     test "update_contact/2 with invalid data returns error changeset" do
