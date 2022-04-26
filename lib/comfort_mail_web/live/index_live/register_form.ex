@@ -2,7 +2,7 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
   use ComfortMailWeb, :live_component
 
   alias ComfortMail.Mails
-
+  alias ComfortMail.Mails.ContactNotifier
 
   @impl true
   def update(%{contact: contact} = assigns, socket) do
@@ -33,10 +33,12 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
 
   defp save_contact(socket, :new, contact_params) do
     case Mails.create_contact(contact_params) do
-      {:ok, _contact} ->
+      {:ok, contact} ->
+        ContactNotifier.deliver_welcome(contact)
+
         {:noreply,
          socket
-         |> put_flash(:info, "Registered successfully")
+         |> put_flash(:info, "Registered successfully - You will receive a confirmation link soon!")
          |> push_redirect(to: "/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
