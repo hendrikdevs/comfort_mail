@@ -11,7 +11,7 @@ defmodule ComfortMail.MailsFixtures do
     {:ok, contact} =
       attrs
       |> Enum.into(%{
-        email: "some email"
+        email: "some@email.com"
       })
       |> ComfortMail.Mails.create_contact()
 
