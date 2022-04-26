@@ -56,5 +56,23 @@ defmodule ComfortMail.MailsTest do
       contact = contact_fixture()
       assert %Ecto.Changeset{} = Mails.change_contact(contact)
     end
+
+    test "activate_contact/2 returns a contact" do
+      contact = contact_fixture()
+      assert {:ok, %Contact{}} = Mails.activate_contact(contact)
+    end
+
+    test "activate_contact/2 returns a contact with an activated status" do
+      contact = contact_fixture()
+      {:ok, contact} = Mails.activate_contact(contact)
+      assert :activated = contact.status
+    end
+
+    test "activate_contact/2 return a contant changeset when not using a contact in a registered status" do
+      contact = contact_fixture()
+      {:ok, contact} = Mails.activate_contact(contact)
+
+      assert {:error, %Ecto.Changeset{}} = Mails.activate_contact(contact)
+    end
   end
 end
