@@ -19,6 +19,8 @@ defmodule ComfortMailWeb.Router do
 
     live "/", IndexLive.Index, :index
 
+    get "/register/:id", RegistrationController, :activate
+
     live "/contacts", ContactLive.Index, :index
     live "/contacts/new", ContactLive.Index, :new
     live "/contacts/:id/edit", ContactLive.Index, :edit
