@@ -23,7 +23,7 @@ defmodule ComfortMailWeb.RegistrationController do
       end
 
     rescue
-      Ecto.NoResultsError ->
+      _ ->
         conn
         |> put_status(400)
         |> render("activation_failed.html")
