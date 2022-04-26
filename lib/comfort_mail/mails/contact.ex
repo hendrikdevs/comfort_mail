@@ -8,6 +8,7 @@ defmodule ComfortMail.Mails.Contact do
   @foreign_key_type :binary_id
   schema "contacts" do
     field :email, :string
+    field :status, Ecto.Enum, values: [:registered, :activated, :banned]
 
     timestamps()
   end
