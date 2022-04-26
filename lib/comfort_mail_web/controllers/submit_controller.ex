@@ -18,7 +18,14 @@ defmodule ComfortMailWeb.SubmitController do
         conn
         |> put_status(400)
         |> redirect(to: Routes.submit_path(conn, :failure))
-      contact ->
+
+      contact ->  # TODO: Create a API function in the Mails context.
+        if contact.status != :activated do  # Check that the account is activated
+          conn
+          |> put_status(400)
+          |> redirect(to: Routes.submit_path(conn, :failure))
+        end
+
         ContactNotifier.deliver_form_submission(contact.email, body_params)
         Logger.info("Successfully delivered form submission to: #{contact.email}")
 
