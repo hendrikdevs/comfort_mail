@@ -1,11 +1,6 @@
 defmodule ComfortMailWeb.SubmitControllerTest do
   use ComfortMailWeb.ConnCase
 
-  # test "GET /", %{conn: conn} do
-  #   conn = get(conn, "/")
-  #   assert html_response(conn, 200) =~ "ComfortMail"
-  # end
-
   describe "submit form" do
     alias ComfortMail.Mails
 
