@@ -20,6 +20,11 @@
     <%= @contact.email %>
   </li>
 
+  <li>
+    <strong>Status:</strong>
+    <%= @contact.status %>
+  </li>
+
 </ul>
 
 <span><%= live_patch "Edit", to: Routes.contact_show_path(@socket, :edit, @contact), class: "button" %></span> |
