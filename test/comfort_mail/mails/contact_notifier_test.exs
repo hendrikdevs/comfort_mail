@@ -1,12 +1,10 @@
 defmodule ComfortMail.Mails.ContactNotifierTest do
-  use ExUnit.Case, async: true
+  use ComfortMail.DataCase
   import Swoosh.TestAssertions
 
   import ComfortMail.MailsFixtures
 
-  alias ComfortMail.Mails.Contact
   alias ComfortMail.Mails.ContactNotifier
-
 
   test "deliver_welcome/1" do
     contact = contact_fixture()
@@ -14,7 +12,7 @@ defmodule ComfortMail.Mails.ContactNotifierTest do
     ContactNotifier.deliver_welcome(contact)
 
     assert_email_sent(
-      subject: "Welcome to Comfortmail!",
+      subject: "Welcome to ComfortMail!",
       to: {"Dear User", contact.email},
       text_body: ~r/#{contact.id}/
     )
