@@ -126,10 +126,10 @@ defmodule ComfortMail.Mails do
   ## Examples
 
     iex> activate_contact(contact)
-    %Contact{}
+    {:ok, %Contact{}}
 
     iex> acitvate_contact(banned_contact)
-    %Ecto.Changeset{}
+    {:error, %Ecto.Changeset{}}
   """
   def activate_contact(%Contact{} = contact, attrs \\ %{}) do
     contact
