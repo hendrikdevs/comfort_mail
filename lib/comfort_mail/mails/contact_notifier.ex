@@ -11,7 +11,7 @@ defmodule ComfortMail.Mails.ContactNotifier do
     new()
     |> to({"Dear User", contact.email})
     |> from({@company_name, @system_mail})
-    |> subject("Welcome to Comfort!")
+    |> subject("Welcome to #{@company_name}!")
     |> html_body(html_body_welcome(contact.id))
     |> text_body(text_body_welcome(contact.id))
     |> Mailer.deliver()
@@ -45,7 +45,7 @@ defmodule ComfortMail.Mails.ContactNotifier do
     |> Mailer.deliver()
   end
 
-  def deliver_form_submission(email, form_content = %{}) do
+  def deliver_form_submission(email, %{} = form_content) do
     new()
     |> to({"Dear User", email})
     |> from({@company_name, @system_mail})
