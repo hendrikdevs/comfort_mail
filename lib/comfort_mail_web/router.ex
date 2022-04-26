@@ -11,7 +11,7 @@ defmodule ComfortMailWeb.Router do
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug :accepts, ["json", "html"]
   end
 
   scope "/", ComfortMailWeb do
@@ -25,6 +25,19 @@ defmodule ComfortMailWeb.Router do
 
     live "/contacts/:id", ContactLive.Show, :show
     live "/contacts/:id/show/edit", ContactLive.Show, :edit
+  end
+
+  scope "/submit", ComfortMailWeb do
+    pipe_through :api
+
+    post "/:email", SubmitController, :submit
+  end
+
+  scope "/submit", ComfortMailWeb do
+    pipe_through :browser
+
+    get "/success", SubmitController, :success
+    get "/failure", SubmitController, :failure
   end
 
   # Other scopes may use custom stacks.
