@@ -28,7 +28,5 @@ defmodule ComfortMailWeb.RegistrationController do
         |> put_status(400)
         |> render("activation_failed.html")
     end
-
-
   end
 end
