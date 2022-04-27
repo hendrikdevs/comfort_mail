@@ -1,13 +1,17 @@
 defmodule ComfortMail.MailsTest do
   use ComfortMail.DataCase
 
-  alias ComfortMail.Mails
+  import ComfortMail.MailsFixtures
 
-  describe "contacts" do
+  alias ComfortMail.Mails
     alias ComfortMail.Mails.Contact
 
-    import ComfortMail.MailsFixtures
+  defp create_contact(_) do
+    contact = contact_fixture()
+    %{contact: contact}
+  end
 
+  describe "contacts" do
     @invalid_attrs %{email: nil}
 
     test "list_contacts/0 returns all contacts" do
@@ -56,16 +60,24 @@ defmodule ComfortMail.MailsTest do
       contact = contact_fixture()
       assert %Ecto.Changeset{} = Mails.change_contact(contact)
     end
+  end
 
-    test "activate_contact/2 returns a contact" do
-      contact = contact_fixture()
+  describe "activate_contact/2" do
+    setup [:create_contact]
+
+    test "returns a contact with a valid contact", %{contact: contact} do
       assert {:ok, %Contact{}} = Mails.activate_contact(contact)
     end
 
-    test "activate_contact/2 returns a contact with an activated status" do
-      contact = contact_fixture()
+    test "returns a contact with an activated status", %{contact: contact} do
+      assert {:ok, %Contact{status: :activated}} = Mails.activate_contact(contact)
+    end
+
+    test "can only activate a contact once", %{contact: contact} do
       {:ok, contact} = Mails.activate_contact(contact)
-      assert :activated = contact.status
+
+      assert {:error, %Ecto.Changeset{}} = Mails.activate_contact(contact)
+    end
     end
 
     test "activate_contact/2 return a contant changeset when not using a contact in a registered status" do
