@@ -1,4 +1,8 @@
 defmodule ComfortMail.Mails.Contact do
+  @moduledoc """
+  The contact represents a registered service user.
+  """
+
   use Ecto.Schema
   require Logger
 
@@ -40,8 +44,10 @@ defmodule ComfortMail.Mails.Contact do
   @doc false
   def activation_changeset(contact, _attrs) do
     Logger.debug("Contact id: #{contact.id} wanted to activate but could not.")
+
     contact
-    |> change()  # Convert the contact struct to a Ecto.Changeset
+    # Convert the contact struct to a Ecto.Changeset
+    |> change()
     |> add_error(:status, "Contact needs to be in registered state!")
   end
 end

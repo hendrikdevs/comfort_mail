@@ -1,4 +1,6 @@
 defmodule ComfortMailWeb.IndexLive.RegisterForm do
+  @moduledoc false
+
   use ComfortMailWeb, :live_component
 
   alias ComfortMail.Mails

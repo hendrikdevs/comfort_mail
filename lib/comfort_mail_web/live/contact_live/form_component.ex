@@ -1,4 +1,6 @@
 defmodule ComfortMailWeb.ContactLive.FormComponent do
+  @moduledoc false
+
   use ComfortMailWeb, :live_component
 
   alias ComfortMail.Mails

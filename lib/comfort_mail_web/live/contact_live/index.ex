@@ -1,4 +1,5 @@
 defmodule ComfortMailWeb.ContactLive.Index do
+  @moduledoc false
   use ComfortMailWeb, :live_view
 
   alias ComfortMail.Mails

@@ -1,4 +1,6 @@
 defmodule ComfortMail.Mails.ContactNotifier do
+  @moduledoc false
+
   import Swoosh.Email
 
   alias ComfortMail.Mailer
