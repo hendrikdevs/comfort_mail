@@ -4,9 +4,12 @@ defmodule ComfortMail.Mails do
   """
 
   import Ecto.Query, warn: false
-  alias ComfortMail.Repo
 
+  require Logger
+
+  alias ComfortMail.Repo
   alias ComfortMail.Mails.Contact
+  alias ComfortMail.Mails.ContactNotifier
 
   @doc """
   Returns the list of contacts.
@@ -135,5 +138,32 @@ defmodule ComfortMail.Mails do
     contact
     |> Contact.activation_changeset(attrs)
     |> Repo.update()
+  end
+
+
+  @doc """
+  Sends submitted content to an activated contact.
+
+  Returns {:ok, contact} if the contact was activated and the form submission email was sent.
+  Will send {:error, :contact_not_activated} otherwise.
+
+  ## Examples
+
+    iex> submit_content_to_contact(contact, content)
+    {:ok, contact}
+
+    iex> submit_content_to_contanct(not_activated_contact, content)
+    {:error, :contacat_not_acitvated}
+  """
+  def submit_content_to_contact(%Contact{status: :activated} = contact, %{} = content) do
+    ContactNotifier.deliver_form_submission(contact.email, content)
+    Logger.info("Successfully delivered form submission to: #{contact.email}")
+
+    {:ok, contact}
+  end
+
+  def submit_content_to_contact(%Contact{status: status} = contact, _content) when status != :activated do
+    Logger.info("Somebody wanted to deliver content to an not activated contact, contact: #{inspect(contact)}")
+    {:error, :contact_not_activated}
   end
 end

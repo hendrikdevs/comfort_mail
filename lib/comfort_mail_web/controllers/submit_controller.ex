@@ -3,7 +3,6 @@ defmodule ComfortMailWeb.SubmitController do
   require Logger
 
   alias ComfortMail.Mails
-  alias ComfortMail.Mails.ContactNotifier
 
   def submit(%Plug.Conn{body_params: body_params, path_params: path_params} = conn, _params) do
     # Get the contact email
@@ -19,13 +18,9 @@ defmodule ComfortMailWeb.SubmitController do
         |> put_status(400)
         |> redirect(to: Routes.submit_path(conn, :failure))
 
-      contact ->  # TODO: Create a API function in the Mails context.
-        case contact.status do
-          :activated ->  # Only deliver mail if the contact is activated
-            ContactNotifier.deliver_form_submission(contact.email, body_params)
-            Logger.info("Successfully delivered form submission to: #{contact.email}")
-
-            # confirm post request - redirect to success page
+      contact ->
+        case Mails.submit_content_to_contact(contact, body_params) do
+          {:ok, _contact} ->
             conn
             |> put_status(302)
             |> redirect(to: Routes.submit_path(conn, :success))

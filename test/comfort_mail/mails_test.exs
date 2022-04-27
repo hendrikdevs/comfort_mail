@@ -4,7 +4,7 @@ defmodule ComfortMail.MailsTest do
   import ComfortMail.MailsFixtures
 
   alias ComfortMail.Mails
-    alias ComfortMail.Mails.Contact
+  alias ComfortMail.Mails.Contact
 
   defp create_contact(_) do
     contact = contact_fixture()
@@ -78,13 +78,19 @@ defmodule ComfortMail.MailsTest do
 
       assert {:error, %Ecto.Changeset{}} = Mails.activate_contact(contact)
     end
-    end
+  end
 
-    test "activate_contact/2 return a contant changeset when not using a contact in a registered status" do
-      contact = contact_fixture()
+  describe "submit_content_to_contact/2" do
+    setup [:create_contact]
+
+    test "submits the content to an activated contact", %{contact: contact} do
       {:ok, contact} = Mails.activate_contact(contact)
 
-      assert {:error, %Ecto.Changeset{}} = Mails.activate_contact(contact)
+      assert {:ok, %Contact{}} = Mails.submit_content_to_contact(contact, %{"test" => "test"})
+    end
+
+    test "does not submit content to an non activated contact", %{contact: contact} do
+      assert {:error, :contact_not_activated} = Mails.submit_content_to_contact(contact, %{"test" => "test"})
     end
   end
 end
