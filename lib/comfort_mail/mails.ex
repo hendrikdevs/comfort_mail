@@ -140,7 +140,6 @@ defmodule ComfortMail.Mails do
     |> Repo.update()
   end
 
-
   @doc """
   Sends submitted content to an activated contact.
 
@@ -162,8 +161,12 @@ defmodule ComfortMail.Mails do
     {:ok, contact}
   end
 
-  def submit_content_to_contact(%Contact{status: status} = contact, _content) when status != :activated do
-    Logger.info("Somebody wanted to deliver content to an not activated contact, contact: #{inspect(contact)}")
+  def submit_content_to_contact(%Contact{status: status} = contact, _content)
+      when status != :activated do
+    Logger.info(
+      "Somebody wanted to deliver content to an not activated contact, contact: #{inspect(contact)}"
+    )
+
     {:error, :contact_not_activated}
   end
 end

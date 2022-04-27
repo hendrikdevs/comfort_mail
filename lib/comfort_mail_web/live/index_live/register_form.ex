@@ -14,7 +14,6 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
      |> assign(:changeset, changeset)}
   end
 
-
   @impl true
   def handle_event("validate", %{"contact" => contact_params}, socket) do
     changeset =
@@ -24,7 +23,6 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
-
 
   @impl true
   def handle_event("register", %{"contact" => contact_params}, socket) do
@@ -38,7 +36,10 @@ defmodule ComfortMailWeb.IndexLive.RegisterForm do
 
         {:noreply,
          socket
-         |> put_flash(:info, "Registered successfully - You will receive a confirmation link soon!")
+         |> put_flash(
+           :info,
+           "Registered successfully - You will receive a confirmation link soon!"
+         )
          |> push_redirect(to: "/")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
