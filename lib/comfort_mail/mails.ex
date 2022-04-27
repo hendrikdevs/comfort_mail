@@ -53,7 +53,7 @@ defmodule ComfortMail.Mails do
     iex> get_contact_by_email(not@registed.com)
     nil
   """
-  @spec get_contact_by_email(binary) :: %Contact{} | nil
+  @spec get_contact_by_email(binary) :: Contact.t() | nil
   def get_contact_by_email(email), do: Repo.get_by(Contact, email: email)
 
   @doc """
