@@ -7,9 +7,9 @@ defmodule ComfortMail.Mails do
 
   require Logger
 
-  alias ComfortMail.Repo
   alias ComfortMail.Mails.Contact
   alias ComfortMail.Mails.ContactNotifier
+  alias ComfortMail.Repo
 
   @doc """
   Returns the list of contacts.
