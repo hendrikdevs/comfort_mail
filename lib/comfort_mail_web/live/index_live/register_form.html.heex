@@ -8,7 +8,7 @@
     phx-submit="register"
   >
     <%= label f, :email %>
-    <%= email_input f, :email %>
+    <%= email_input f, :email, placeholder: "john@doe.com" %>
     <%= error_tag f, :email %>
 
     <div>

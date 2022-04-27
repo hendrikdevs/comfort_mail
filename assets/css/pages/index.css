@@ -1,0 +1,12 @@
+#title h1 {
+    margin-bottom: 0;
+}
+
+#content {
+    margin: 4em 0 4em 0;
+}
+
+#bottom-content {
+    margin-top: 4em;
+    margin-bottom: 6em;
+}

@@ -1,7 +1,28 @@
-<h1>ComfortMail</h1>
+<div id="title">
+  <h1>ComfortMail</h1>
+  <p>Customer requests straight to your inbox!</p>
+</div>
 
-<.live_component
-  module={ComfortMailWeb.IndexLive.RegisterForm}
-  id={:new}
-  contact={@contact}
-/>
+<div id="content">
+  <p>
+    ComfortMail makes it easy to send your form data instatly to your mailbox.
+    By posting your form data to our servers you don't need to have your own!
+  </p>
+
+  <.live_component
+    module={ComfortMailWeb.IndexLive.RegisterForm}
+    id={:new}
+    contact={@contact}
+  />
+
+  <div class="right" id="bottom-content">
+    <p>
+      By posting your form data to our servers -
+      you don't need to have your own!
+      <br>
+      No hidden fees, no cost! We need to run this server for our websites anyways.
+    </p>
+
+    <a href="#" class="button">How IT works</a>
+  </div>
+</div>

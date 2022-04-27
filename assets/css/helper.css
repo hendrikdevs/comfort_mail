@@ -1,0 +1,15 @@
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+}
