@@ -7,7 +7,7 @@ defmodule ComfortMail.Mails.ContactNotifier do
   @company_name "ComfortMail"
   @system_mail "no-reply@comfort-mail.com"
 
-  def deliver_welcome(contact = %Contact{}) do
+  def deliver_welcome(%Contact{} = contact) do
     new()
     |> to({"Dear User", contact.email})
     |> from({@company_name, @system_mail})
@@ -55,13 +55,13 @@ defmodule ComfortMail.Mails.ContactNotifier do
     |> Mailer.deliver()
   end
 
-  defp html_body_form_submission(form_content = %{}) do
+  defp html_body_form_submission(%{} = form_content) do
     Enum.reduce(form_content, "", fn ({k, v}, acc) ->
       acc <> "<h2>#{k}</h2><p>#{inspect(v)}</p>\n"
     end)
   end
 
-  defp text_body_form_submission(form_content = %{}) do
+  defp text_body_form_submission(%{} = form_content) do
     Enum.reduce(form_content, "", fn ({k, v}, acc) ->
       acc <> "#{k}\n  #{inspect(v)}\n\n"
     end)
