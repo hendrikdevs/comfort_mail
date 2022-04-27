@@ -56,13 +56,13 @@ defmodule ComfortMail.Mails.ContactNotifier do
   end
 
   defp html_body_form_submission(%{} = form_content) do
-    Enum.reduce(form_content, "", fn ({k, v}, acc) ->
+    Enum.reduce(form_content, "", fn {k, v}, acc ->
       acc <> "<h2>#{k}</h2><p>#{inspect(v)}</p>\n"
     end)
   end
 
   defp text_body_form_submission(%{} = form_content) do
-    Enum.reduce(form_content, "", fn ({k, v}, acc) ->
+    Enum.reduce(form_content, "", fn {k, v}, acc ->
       acc <> "#{k}\n  #{inspect(v)}\n\n"
     end)
   end
