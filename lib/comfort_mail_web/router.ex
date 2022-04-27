@@ -1,17 +1,20 @@
 defmodule ComfortMailWeb.Router do
   use ComfortMailWeb, :router
 
+  @default_content_security_policy %{"content-security-policy" => "default-src 'self"}
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, {ComfortMailWeb.LayoutView, :root}
     plug :protect_from_forgery
-    plug :put_secure_browser_headers
+    plug :put_secure_browser_headers, @default_content_security_policy
   end
 
   pipeline :api do
     plug :accepts, ["json", "html"]
+    plug :put_secure_browser_headers, @default_content_security_policy
   end
 
   scope "/", ComfortMailWeb do
