@@ -51,7 +51,8 @@ defmodule ComfortMail.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ecto_commons, "~> 0.3.3"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:sobelow, "~> 0.8", only: [:dev, :test]},
+      {:sobelow, "~> 0.8", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false}
     ]
   end
 
