@@ -1,6 +1,7 @@
 #title {
     gap: 2em;
     margin-bottom: 2em;
+    margin-top: 0;
 }
 
 #title-text h1 {
@@ -95,16 +96,24 @@
     margin-bottom: 8px;
 }
 
+.card p {
+    margin-bottom: 0.75em;
+}
+
+.card a {
+    width: 100%;
+}
+
 /* Larger then mobile screen */
 @media (min-width: 40.0rem) {
     #title-text {
-        flex-basis: 60%;
+        flex-basis: 55%;
         order: 0;
     }
 
     #title-pic {
         order: 1;
-        flex-basis: 35%
+        flex-basis: 40%
     }
 
     #title img {
