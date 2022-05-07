@@ -1,28 +1,113 @@
-<div id="title">
-  <h1>ComfortMail</h1>
-  <p>Customer requests straight to your inbox!</p>
+<div class="story" id="title">
+  <div id="title-pic">
+    <img phx-track-static src={Routes.static_path(@socket, "/images/undraw/undraw_forms_re_pkrt.svg")} />
+  </div>
+
+  <div id="title-text">
+    <h1>Comfort Mail</h1>
+    <p>
+      Let customers send requests straight to your inbox!
+      With our high-availability servers you will never 
+      miss a request from your customers again.
+    </p>
+    
+    <h3>Register (100% free)</h3>
+    <.live_component
+      module={ComfortMailWeb.IndexLive.RegisterForm}
+      id={:new}
+      contact={@contact}
+    />
+  </div>
 </div>
 
-<div id="content">
-  <p>
-    ComfortMail makes it easy to send your form data instatly to your mailbox.
-    By posting your form data to our servers you don't need to have your own!
-  </p>
 
-  <.live_component
-    module={ComfortMailWeb.IndexLive.RegisterForm}
-    id={:new}
-    contact={@contact}
-  />
+<div id="cases">
+  <h2>Explore our product</h2>
+  <div>
+    <a href="#story-dev" class="button">For delevopers</a>
+    <a href="#story-owner" class="button">For site owners</a>
+  </div>
+</div>
 
-  <div class="right" id="bottom-content">
+
+<div id="benefits">
+  <h2>Awesome benefits of using Comfort Mail</h2>
+  <div id="cards">
+    <div class="card">
+      <div class="card-title">Ease of use</div>
+      <p class="card-text">With one command you can start receiving your customer requests!</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Flexible</div>
+      <p class="card-text">
+        We support formencoded data aswell as JSON encoded data. 
+        So you can send your data via html forms or javascript!
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Crossplattform</div>
+      <p class="card-text">
+        Comfort Mail works with every browser and plattform. 
+        You simply need to send a HTTP POST request.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Free to use</div>
+      <p class="card-text">
+        This service is inexpense in itself and we have to keep these 
+        servers for our sites up anyway. That's why we provide 
+        this service free of charge.
+      </p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">GDRP conform</div>
+      <p class="card-text">
+        As a european entity we strictly adhere to the GDPR. 
+        We don't have advertisement partners, do not log data about you and 
+        only save your email adress.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="story" id="story-dev">
+  <div id="story-dev-pic">
+    <img phx-track-static src={Routes.static_path(@socket, "/images/undraw/undraw_select_re_3kbd.svg")} />
+  </div>
+
+  <div id="story-dev-text">
+    <h3>For developers</h3>
     <p>
-      By posting your form data to our servers -
-      you don't need to have your own!
-      <br>
-      No hidden fees, no cost! We need to run this server for our websites anyways.
+      Quickly add a contact form to your customers page. 
+      You choose if you want to encode your data as JSON or form-encoded.
+      Eitherway we will forward your data to your customers inbox instantly.
     </p>
+    <div id="story-dev-text-buttons">
+      <a href="#" class="button button-outline">Quick start</a>
+      <a href="#" class="button button-outline">Documentation</a>
+    </div>
+  </div>
 
-    <a href="#" class="button">How IT works</a>
+  
+</div>
+
+<div class="story" id="story-owner">
+  <div>
+    <img phx-track-static src={Routes.static_path(@socket, "/images/undraw/undraw_conversation_re_c26v.svg")} />
+  </div>
+
+  <div id="story-owner-text">
+    <h3>For site owners</h3>
+    <p>
+      With one command you can specify your contact field to 
+      receive your customer requests in your inbox! Our quick start guide
+      will give you an easy step by step guide on how to use Comfort Mail.
+    </p>
+    <a href="#" class="button button-outline">Quick start</a>
   </div>
 </div>
