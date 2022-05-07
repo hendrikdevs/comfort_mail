@@ -12,11 +12,17 @@
   <body>
     <header class="container header-margin">
       <nav>
-        <span>logo</span>
+        <a href="/">
+          <img class="header-logo" phx-track-static src={Routes.static_path(@conn, "/images/logo/logo-vertical.svg")} />
+        </a>
         <div>
-          <a href="#">How IT works</a>
+          <a href="/">Home</a>
           <span>|</span>
-          <a href="#">Register</a>
+          <%= link "Quick start", to: "#{Routes.page_path(@conn, :documentation)}#quick-start" %>
+          <span>|</span>
+          <%= link "Documentation", to: Routes.page_path(@conn, :documentation) %>
+          <span>|</span>
+          <%= link "Register", to: Routes.index_register_path(@conn, :register), class: "button" %>
         </div>
       </nav>
     </header>
@@ -24,10 +30,13 @@
     <%= @inner_content %>
 
     <footer class="container">
-      <div>
-      <span>Our other projects:</span>
+      <div class="footer-right">
+        <span>More projects from us:</span>
+        <a href="#">IT Comfort System</a>
       </div>
-      <span class="footer-logo">logo</span>
+      <a href="/">
+        <img class="footer-logo" phx-track-static src={Routes.static_path(@conn, "/images/logo/logo-only.svg")} />
+      </a>
       <div class="footer-right">
         <a href="#">Datenschutzerklärung</a>
         <a href="#">Allgemeine Geschäftsbedingungen</a>

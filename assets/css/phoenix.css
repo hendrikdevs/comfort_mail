@@ -687,19 +687,27 @@ select {
   width: auto;
 }
 
+
+/** OWN CODE **/
 .header-margin {
-  margin-bottom: 2em;
+  margin-top: 2em;
+  margin-bottom: 4em;
 }
 
 nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
 
+.header-logo {
+  max-height: 75px;
 }
 
 footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 footer>* {
@@ -712,6 +720,7 @@ footer a {
 
 .footer-logo {
   text-align: center;
+  max-height: 150px;
 }
 
 .footer-right {
