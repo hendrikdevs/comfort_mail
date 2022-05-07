@@ -36,7 +36,7 @@
     <div class="card">
       <div class="card-title">Ease of use</div>
       <p class="card-text">With one command you can start receiving your customer requests!</p>
-      <a href="#" class="button button-outline">Quick start</a>
+      <%= link "Quick start", to: "#{Routes.page_path(@socket, :documentation)}#quick-start", class: "button button-outline" %>
     </div>
 
     <div class="card">
@@ -89,8 +89,8 @@
       Either way we will forward your data to your customers inbox instantly.
     </p>
     <div id="story-dev-text-buttons">
-      <a href="#" class="button button-outline">Quick start</a>
-      <a href="#" class="button button-outline">Documentation</a>
+      <%= link "Quick start", to: "#{Routes.page_path(@socket, :documentation)}#quick-start", class: "button button-outline" %>
+      <%= link "Documentation", to: Routes.page_path(@socket, :documentation), class: "button button-outline" %>
     </div>
   </div>
 
@@ -109,6 +109,6 @@
       receive your customer requests in your inbox! Our quick start guide
       will give you an easy step by step guide on how to use Comfort Mail.
     </p>
-    <a href="#" class="button button-outline">Quick start</a>
+    <%= link "Quick start", to: "#{Routes.page_path(@socket, :documentation)}#quick-start", class: "button button-outline" %>
   </div>
 </div>
