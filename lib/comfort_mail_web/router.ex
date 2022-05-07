@@ -23,6 +23,7 @@ defmodule ComfortMailWeb.Router do
     live "/", IndexLive.Index, :index
     live "/register", IndexLive.Register, :register
 
+    get "/documentation", PageController, :documentation
 
     get "/register/:id", RegistrationController, :activate
 
