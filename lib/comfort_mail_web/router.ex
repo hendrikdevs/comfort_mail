@@ -1,7 +1,7 @@
 defmodule ComfortMailWeb.Router do
   use ComfortMailWeb, :router
 
-  @default_content_security_policy %{"Content-Security-Policy" => "default-src 'self'"}
+  @default_content_security_policy %{"content-security-policy" => "default-src 'self'"}
 
   pipeline :browser do
     plug :accepts, ["html"]
