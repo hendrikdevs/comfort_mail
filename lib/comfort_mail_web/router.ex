@@ -21,6 +21,8 @@ defmodule ComfortMailWeb.Router do
     pipe_through :browser
 
     live "/", IndexLive.Index, :index
+    live "/register", IndexLive.Register, :register
+
 
     get "/register/:id", RegistrationController, :activate
 
