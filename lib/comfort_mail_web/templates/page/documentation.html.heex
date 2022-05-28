@@ -1,1 +1,45 @@
-<h1>Much docs, much wow</h1>
+<h1>Documentation</h1>
+<p>
+    This page will show you how to start using Comfort Mail.
+    For more advanced uses you can look at the api documentation.
+</p>
+
+<div id="quick-start">
+    <h2>Quick start guide</h2>
+
+    <ol>
+        <li><%= link "Click here to register", to: Routes.index_register_path(@conn, :register) %></li>
+        <li>Activate your account. Go to your inbox and click on the link in the email you received from us.</li>
+        <li>Open the source code of your website where you want to change a form to send an email to yourself.</li>
+        <li>Add the following attributes to your html form element:
+            <ul>
+                <li>action="https://comfort-mail.com/submission/:email"</li>
+                <li>method="post"</li>
+            </ul>
+            Your html code with the form should look like: <br>
+            <code>
+                <%= '<form action="https://comfort-mail.com/submission/:email" method="post">...</form>' %>
+            </code>
+        </li>
+        <li>Rememeber to replace :email with your registered email!</li>
+        <li>You can now receive your form submission in your inbox!</li>
+    </ol>
+</div>
+
+<div id="api-documentation">
+    <h2>API documentation</h2>
+    <h3>Send Submission</h3>
+    <p>
+        You can send a form-encoded or json submission to: 
+        <pre>https://comfort-mail.com/submission/:email</pre>
+        Rememeber to replace :email with your registered email!
+    </p>
+    <h4>Response</h4>
+    <p>
+        The server will send you a response with a redirect. It will redirect to
+        <pre>https://comfort-mail.com/submission/success</pre>
+        on success. And to
+        <pre>https://comfort-mail.com/submission/failure</pre>
+        on failure.
+    </p>
+</div>
