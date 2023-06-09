@@ -22,17 +22,9 @@ defmodule ComfortMailWeb.Router do
 
     live "/", IndexLive.Index, :index
     live "/register", IndexLive.Register, :register
-
-    get "/documentation", PageController, :documentation
-
     get "/register/:id", RegistrationController, :activate
 
-    live "/contacts", ContactLive.Index, :index
-    live "/contacts/new", ContactLive.Index, :new
-    live "/contacts/:id/edit", ContactLive.Index, :edit
-
-    live "/contacts/:id", ContactLive.Show, :show
-    live "/contacts/:id/show/edit", ContactLive.Show, :edit
+    get "/documentation", PageController, :documentation
   end
 
   scope "/submit", ComfortMailWeb do
@@ -46,6 +38,19 @@ defmodule ComfortMailWeb.Router do
 
     get "/success", SubmitController, :success
     get "/failure", SubmitController, :failure
+  end
+
+  if Mix.env() in [:dev, :test] do
+    scope "/contacts", ComfortMailWeb do
+      pipe_through :browser
+
+      live "/", ContactLive.Index, :index
+      live "/new", ContactLive.Index, :new
+      live "/:id/edit", ContactLive.Index, :edit
+
+      live "/:id", ContactLive.Show, :show
+      live "/:id/show/edit", ContactLive.Show, :edit
+    end
   end
 
   # Other scopes may use custom stacks.

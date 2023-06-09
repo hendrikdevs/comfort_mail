@@ -14,7 +14,7 @@
     <%= error_tag f, :email %>
 
     <%= label f, :status %>
-    <%= text_input f, :status %>
+    <%= select f, :status, [:registered, :activated, :banned] %>
     <%= error_tag f, :status %>
   
     <div>

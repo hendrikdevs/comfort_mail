@@ -25,7 +25,16 @@ config :comfort_mail, ComfortMailWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :comfort_mail, ComfortMail.Mailer, adapter: Swoosh.Adapters.Local
+# config :comfort_mail, ComfortMail.Mailer, adapter: Swoosh.Adapters.Local
+config :comfort_mail, ComfortMail.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.strato.de",
+  username: "no-reply@comfort-mail.com",
+  password: "wrong_password_for_now_use_secrets",
+  tls: :always,
+  auth: :always,
+  port: 587,
+  retries: 2
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

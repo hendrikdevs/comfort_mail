@@ -40,7 +40,7 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
+  host = System.get_env("PHX_HOST") || "comfort-mail.com"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :comfort_mail, ComfortMailWeb.Endpoint,
@@ -71,10 +71,18 @@ if config_env() == :prod do
   # Also, you may need to configure the Swoosh API client of your choice if you
   # are not using SMTP. Here is an example of the configuration:
   #
-  #     config :comfort_mail, ComfortMail.Mailer,
-  #       adapter: Swoosh.Adapters.Mailgun,
-  #       api_key: System.get_env("MAILGUN_API_KEY"),
-  #       domain: System.get_env("MAILGUN_DOMAIN")
+  config :comfort_mail, ComfortMail.Mailer,
+    adapter: Swoosh.Adapters.SMTP,
+    relay: "smtp.strato.de",
+    username: "submission@comfort-mail.com",
+    password: "tNE83VHUvYSR2vN",
+    ssl: true,
+    tls: :always,
+    auth: :always,
+    port: 587,
+    retries: 2,
+    no_mx_lookup: false
+
   #
   # For this example you need include a HTTP client required by Swoosh API client.
   # Swoosh supports Hackney and Finch out of the box:
